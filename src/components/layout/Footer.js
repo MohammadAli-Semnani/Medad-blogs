@@ -6,12 +6,18 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 const Footer = () => {
   return (
-    <Grid maxWidth="xl" container bgcolor="#eaeaea" component="footer" padding={2} mt={2}>
+    <Grid
+      maxWidth="xl"
+      container
+      bgcolor="#eaeaea"
+      component="footer"
+      padding={2}
+      mt={2}>
       <Grid item xs={12} md={6} textAlign="center">
         <Typography
           component="p"
           variant="p"
-          fontWeight={600}
+          fontWeight={400}
           fontSize="1.2rem"
           textAlign="center"
           color="primary">
@@ -31,7 +37,7 @@ const Footer = () => {
             <Typography
               component="p"
               variant="p"
-              fontWeight={600}
+              fontWeight={400}
               fontSize="1.2rem"
               textAlign="center"
               color="primary">
@@ -62,7 +68,7 @@ const Footer = () => {
               padding={1}
               href="https://twitter.com/mhmd_ali_s"
               color="primary">
-              <TwitterIcon />
+              <TwitterIcon/>
             </Link>
           </Grid>
         </Grid>
