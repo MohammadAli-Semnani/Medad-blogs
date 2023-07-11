@@ -9,11 +9,14 @@ const GET_BLOG_INFO = gql`
           url
         }
       }
-      title
       slug
+      title
       id
       coverPhoto {
         url
+      }
+      content {
+        text
       }
     }
   }
