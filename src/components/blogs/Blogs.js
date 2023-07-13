@@ -9,10 +9,10 @@ const Blogs = () => {
     data && console.log(data);
     return (
       <>
-        <Grid container >
+        <Grid container>
           {data &&
             data.posts.map((blog) => (
-              <Grid xs={12} md={6}>
+              <Grid xs={12} md={4}>
                 <BlogCard {...blog} />
               </Grid>
             ))}
