@@ -10,10 +10,18 @@ import spinner from "../../asset/Loading/spinner.gif";
 
 const HomePage = () => {
   useEffect(() => {
-    Aos.init({duration: 2000});
+    Aos.init({duration: 1500});
   }, []);
-  const {loading, error} = useQuery(GET_BLOG_INFO);
-
+  const {loading} = useQuery(GET_BLOG_INFO);
+  const textStyle = {
+    color: "#fff",
+    backgroundColor: "#4E9CEA",
+    width: "fit-content",
+    padding: "4px 12px",
+    margin: "5px auto 20px",
+    borderRadius: "5px",
+    textAlign: "center",
+  };
   return (
     <>
       {loading ? (
@@ -30,17 +38,12 @@ const HomePage = () => {
           <Grid container spacing={2} padding={3}>
             <Grid item xs={12}>
               <Typography
+                style={textStyle}
                 component="div"
                 variant="h5"
                 fontWeight={700}
                 fontSize={30}
                 data-aos="fade-down"
-                textAlign="center"
-                color="#fff"
-                bgcolor="#1976d2"
-                width="fit-content"
-                padding="4px 8px"
-                borderRadius="5px"
                 mb={3}>
                 مقالات اخیر
               </Typography>
@@ -52,9 +55,9 @@ const HomePage = () => {
                 variant="h5"
                 fontWeight={800}
                 fontSize={25}
-                textAlign="center"
-                data-aos-delay="500"
+                data-aos-delay="100"
                 data-aos="fade-down"
+                style={textStyle}
                 mb={3}>
                 نویسنده ها
               </Typography>
