@@ -16,7 +16,16 @@ const HomePage = () => {
 
   return (
     <>
-       (
+      {loading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+          <img style={{margin: "0 auto"}} src={spinner} />
+        </div>
+      ) : (
         <Container maxWidth="lg">
           <Grid container spacing={2} padding={3}>
             <Grid item xs={12}>
@@ -27,7 +36,11 @@ const HomePage = () => {
                 fontSize={30}
                 data-aos="fade-down"
                 textAlign="center"
-                 
+                color="#fff"
+                bgcolor="#1976d2"
+                width="fit-content"
+                padding="4px 8px"
+                borderRadius="5px"
                 mb={3}>
                 مقالات اخیر
               </Typography>
@@ -49,7 +62,7 @@ const HomePage = () => {
             </Grid>
           </Grid>
         </Container>
-      )
+      )}
     </>
   );
 };
