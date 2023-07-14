@@ -10,14 +10,13 @@ import summarizeArticle from "../../helpers/summery";
 export default function BlogCard({content, coverPhoto, author, title}) {
   return (
     <Card
-      
       sx={{
         "&:hover": {
           scale: "1.06",
           boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 14px 5px",
         },
-        border:"1px solid #d1d1d1",
-        transition: "all .1s ease",
+        border: "1px solid #d1d1d1",
+        transition: "all .3s ease",
         margin: "15px",
         maxHeight: 400,
         maxWidth: 345,
@@ -69,7 +68,7 @@ export default function BlogCard({content, coverPhoto, author, title}) {
           <Typography
             component="p"
             variant="p"
-            sx={{fontSize: 13, fontWeight: 500}}>
+            sx={{fontSize: 13, fontWeight: 600}}>
             {author.name}
           </Typography>
         }
