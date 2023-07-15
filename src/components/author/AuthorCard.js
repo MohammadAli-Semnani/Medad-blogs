@@ -3,13 +3,13 @@ import React from "react";
 
 const AuthorCard = ({name, avatar, slug}) => {
   return (
-      <Card
+    <Card
       sx={{
         "&:hover": {
           scale: "1.06",
           boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 14px 5px",
         },
-        border: "1px solid #d1d1d1",
+        borderTop: "8px solid #1976d2",
         transition: "all .3s ease",
         margin: "15px",
         Height: "auto",
@@ -24,7 +24,7 @@ const AuthorCard = ({name, avatar, slug}) => {
       }}>
       <CardHeader
         avatar={
-            <Avatar
+          <Avatar
             xs={{width: 20}}
             sx={{width: 120, height: 120, marginRight: -2}}
             aria-label="recipe">
