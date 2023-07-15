@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import Blogs from "../blogs/Blogs";
 import Authors from "../author/Authors";
-import {Container, Grid, Typography} from "@mui/material";
+import {Chip, Container, Divider, Grid, Typography} from "@mui/material";
 import {GET_BLOG_INFO} from "../graphql/queries";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -14,13 +14,15 @@ const HomePage = () => {
   }, []);
   const {loading} = useQuery(GET_BLOG_INFO);
   const textStyle = {
-    color: "#fff",
-    backgroundColor: "#4E9CEA",
+    color: "#222",
+    // backgroundColor: "#4E9CEA",
+
     width: "fit-content",
-    padding: "4px 12px",
+    padding: "4px 16px",
     margin: "5px auto 20px",
-    borderRadius: "5px",
+    borderRadius: "8px",
     textAlign: "center",
+    textShadow: " 0px 0px 3px rgba(0, 0, 0,1)",
   };
   return (
     <>
@@ -41,26 +43,26 @@ const HomePage = () => {
                 style={textStyle}
                 component="div"
                 variant="h5"
-                fontWeight={700}
-                fontSize={30}
+                fontWeight={800}
+                fontSize={50}
                 data-aos="fade-down"
                 mb={3}>
                 مقالات اخیر
               </Typography>
               <Blogs />
             </Grid>
+
             <Grid item xs={12}>
-              <Typography
-                component="h3"
-                variant="h5"
-                fontWeight={800}
-                fontSize={25}
-                data-aos-delay="100"
-                data-aos="fade-down"
-                style={textStyle}
-                mb={3}>
-                نویسنده ها
-              </Typography>
+              <Divider sx={{color: "primary", my: 8}} data-aos="fade-down">
+                <Chip
+                  sx={{fontSize: "20px", fontWeight: 800, padding: "22px"}}
+                  size="medium"
+                  color="primary"
+                  label="نویسنده ها"
+                  variant="outlined"
+                />
+              </Divider>
+
               <Authors />
             </Grid>
           </Grid>
