@@ -38,9 +38,17 @@ const AuthorPage = () => {
         </Grid>
 
         <Grid item xs={8}>
-          <CardContent sx={{margin:"45px 30px 30px"}}>
-            <Typography fontWeight={800} fontSize={25}>
+          <CardContent sx={{margin: "25px 30px"}}>
+            <Typography
+              mb="10px"
+              fontWeight={800}
+              color="#0f0f0f"
+              component="h3"
+              fontSize={25}>
               {data && data.author.name}
+            </Typography>
+            <Typography component="span" fontWeight={600} color="#4d4d4d">
+              {data && data.author.description.html}
             </Typography>
           </CardContent>
         </Grid>
