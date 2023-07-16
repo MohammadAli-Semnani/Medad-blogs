@@ -9,14 +9,15 @@ import {useQuery} from "@apollo/client";
 import spinner from "../../asset/Loading/spinner.gif";
 
 const HomePage = () => {
+  
   useEffect(() => {
     Aos.init({duration: 1500});
   }, []);
+
   const {loading} = useQuery(GET_BLOG_INFO);
+
   const textStyle = {
     color: "#222",
-    // backgroundColor: "#4E9CEA",
-
     width: "fit-content",
     padding: "4px 16px",
     margin: "5px auto 20px",
@@ -24,6 +25,7 @@ const HomePage = () => {
     textAlign: "center",
     textShadow: " 0px 0px 3px rgba(0, 0, 0,1)",
   };
+
   return (
     <>
       {loading ? (

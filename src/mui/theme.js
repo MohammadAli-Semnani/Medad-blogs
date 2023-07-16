@@ -1,10 +1,10 @@
-import { createTheme } from "@mui/material";
+import {createTheme} from "@mui/material";
 
 const theme = createTheme({
   palette: {
-   mode: 'light',
- },
-  direction:"rtl",
+    mode: "light",
+  },
+  direction: "rtl",
   typography: {
     fontFamily: `"YekanBakh", "Roboto", "Arial"`,
     fontWeightLight: 300,
@@ -14,7 +14,6 @@ const theme = createTheme({
     fontWeightHeavy: 800,
     fontWeightFat: 900,
   },
-  
 });
 
 export default theme;

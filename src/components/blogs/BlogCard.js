@@ -6,8 +6,9 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import summarizeArticle from "../../helpers/summery";
+import {Link} from "react-router-dom";
 
-export default function BlogCard({content, coverPhoto, author, title}) {
+export default function BlogCard({content, coverPhoto, author, title,slug}) {
   return (
     <Card
       sx={{
@@ -23,33 +24,37 @@ export default function BlogCard({content, coverPhoto, author, title}) {
         boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 14px 2px",
         borderRadius: "18px",
       }}>
-      <CardMedia
-        component="img"
-        height="190px"
-        image={coverPhoto && coverPhoto.url}
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography
-          component="p"
-          variant="p"
-          sx={{fontWeight: "800", lineHeight: "18px", fontSize: 14}}>
-          {title}
-        </Typography>
-        <Typography
-          sx={{
-            overflow: "hidden",
-            fontSize: "12px",
-            lineHeight: "15px",
-            fontWeight: 600,
-            maxHeight: "45px",
-            mt: 1,
-          }}
-          variant="body2"
-          color="text.secondary">
-          {summarizeArticle(content && content.text)}
-        </Typography>
-      </CardContent>
+      <Link
+        style={{textDecoration: "none", color: "#363636"}}
+        to={`/blogs/${slug}`}>
+        <CardMedia
+          component="img"
+          height="190px"
+          image={coverPhoto && coverPhoto.url}
+          alt="Paella dish"
+        />
+        <CardContent>
+          <Typography
+            component="p"
+            variant="p"
+            sx={{fontWeight: "800", lineHeight: "18px", fontSize: 14}}>
+            {title}
+          </Typography>
+          <Typography
+            sx={{
+              overflow: "hidden",
+              fontSize: "12px",
+              lineHeight: "15px",
+              fontWeight: 600,
+              maxHeight: "45px",
+              mt: 1,
+            }}
+            variant="body2"
+            color="text.secondary">
+            {(content && content.text)}
+          </Typography>
+        </CardContent>
+      </Link>
       <CardHeader
         sx={{padding: "0", mb: "13px"}}
         avatar={

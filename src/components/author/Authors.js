@@ -6,11 +6,10 @@ import AuthorCard from "./AuthorCard";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-
 const Authors = () => {
   useEffect(() => {
     Aos.init({duration: 1500});
-  },[]);
+  }, []);
 
   const {data, loading, error} = useQuery(GET_AUTHORS_INFO);
   console.log("authors", data);
