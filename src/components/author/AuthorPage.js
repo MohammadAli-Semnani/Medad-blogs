@@ -2,15 +2,7 @@ import {useQuery} from "@apollo/client";
 import React from "react";
 import {useParams} from "react-router-dom";
 import {GET_AUTHOR_INFO} from "../graphql/queries";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
-import {Margin} from "@mui/icons-material";
+import {Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 
 const AuthorPage = () => {
   const {slug} = useParams();
@@ -47,8 +39,14 @@ const AuthorPage = () => {
               fontSize={25}>
               {data && data.author.name}
             </Typography>
-            <Typography component="span" fontWeight={600} color="#4d4d4d">
-              {data && data.author.description.html}
+            <Typography component="span"
+              fontWeight={600} color="#4d4d4d">
+
+
+              
+              <div dangerouslySetInnerHTML={{__html: data.author.description.html}}>
+              
+              </div>
             </Typography>
           </CardContent>
         </Grid>
