@@ -2,7 +2,15 @@ import {useQuery} from "@apollo/client";
 import React from "react";
 import {useParams} from "react-router-dom";
 import {GET_AUTHOR_INFO} from "../graphql/queries";
-import {Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import {
+  Avatar,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
 
 const AuthorPage = () => {
   const {slug} = useParams();
@@ -11,47 +19,90 @@ const AuthorPage = () => {
   const {data, loading, errors} = useQuery(GET_AUTHOR_INFO, {
     variables: {slug},
   });
-  console.log(data);
-  return (
-    <Card
-      sx={{
-        border: "2px solid red",
-        borderRadius: "30px",
-        width: 1200,
-        margin: "70px auto",
-      }}>
-      <Grid container>
-        <Grid item xs={4}>
-          <CardMedia
-            component="img"
-            sx={{width: 400, height: 450}}
-            image={data && data.author.avatar.url}
-          />
-        </Grid>
+  const textStyle = {
+    color: "#222",
+    width: "fit-content",
+    padding: "4px 16px",
+    margin: "5px auto 20px",
+    borderRadius: "8px",
+    textAlign: "center",
+  };
 
-        <Grid item xs={8}>
-          <CardContent sx={{margin: "25px 30px"}}>
+  return (
+    <>
+      <Container maxWidth="lg">
+        <Grid
+          container
+          // xs={12}
+        >
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              // maxWidth:"400px",
+            }}>
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{
+                    width: 200,
+
+                    height: 200,
+                  }}>
+                  <img
+                    src={data && data.author.avatar.url}
+                    style={{width: 250, minHeight: "115px"}}
+                  />
+                </Avatar>
+              }
+            />
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              // maxWidth:"400px",
+            }}>
             <Typography
-              mb="10px"
-              fontWeight={800}
-              color="#0f0f0f"
-              component="h3"
-              fontSize={25}>
+              sx={{ textShadow: " 0px 0px 3px rgba(0, 0, 0,1)"}}
+              mt={2}
+              fontWeight="700"
+              fontSize={30}
+              style={textStyle}>
               {data && data.author.name}
             </Typography>
-            <Typography component="span"
-              fontWeight={600} color="#4d4d4d">
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}>
+            <Typography
+              component="div"
+              style={textStyle}
+              sx={{maxWidth: 900, textShadow: " 0px 0px 1.5px rgba(0, 0, 0,1)"}}
+              dangerouslySetInnerHTML={{
+                __html: data && data.author.description.html,
+              }}></Typography>
+          </Grid>
+          <Grid item>
 
-
-              
-              <div dangerouslySetInnerHTML={{__html: data.author.description.html}}>
-              
-              </div>
-            </Typography>
-          </CardContent>
+          </Grid>
         </Grid>
-      </Grid>
-    </Card>
+      </Container>
+    </>
   );
 };
 
