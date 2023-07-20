@@ -1,7 +1,8 @@
 import {useQuery} from "@apollo/client";
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
-import {GET_AUTHOR_INFO} from "../graphql/queries";
+import { GET_AUTHOR_INFO } from "../graphql/queries";
+import sanitizeHtml from "sanitize-html";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -36,7 +37,6 @@ const AuthorPage = () => {
     textAlign: "center",
   };
 
-  console.log(data);
   return (
     <>
       <Container maxWidth="lg">
@@ -99,7 +99,7 @@ const AuthorPage = () => {
               style={textStyle}
               sx={{maxWidth: 900, textShadow: " 0px 0px 1.5px rgba(0, 0, 0,1)"}}
               dangerouslySetInnerHTML={{
-                __html: data && data.author.description.html,
+                __html: sanitizeHtml(data && data.author.description.html),
               }}></Typography>
           </Grid>
           <Grid item xs={12}>
@@ -127,7 +127,7 @@ const AuthorPage = () => {
                   coverPhoto={post.coverPhoto}
                   content={post.content}
                   author={data && data.author}
-                  />
+                />
               </Grid>;
             })}
         </Grid>
