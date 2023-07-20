@@ -1,18 +1,26 @@
 import {useQuery} from "@apollo/client";
-import React from "react";
+import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import {GET_AUTHOR_INFO} from "../graphql/queries";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 import {
   Avatar,
   CardContent,
   CardHeader,
   CardMedia,
+  Chip,
   Container,
+  Divider,
   Grid,
   Typography,
 } from "@mui/material";
 
 const AuthorPage = () => {
+  useEffect(() => {
+    Aos.init({duration: 2000});
+  }, []);
   const {slug} = useParams();
   console.log(slug);
 
@@ -43,7 +51,6 @@ const AuthorPage = () => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
-              // maxWidth:"400px",
             }}>
             <CardHeader
               avatar={
@@ -72,7 +79,7 @@ const AuthorPage = () => {
               // maxWidth:"400px",
             }}>
             <Typography
-              sx={{ textShadow: " 0px 0px 3px rgba(0, 0, 0,1)"}}
+              sx={{textShadow: " 0px 0px 3px rgba(0, 0, 0,1)"}}
               mt={2}
               fontWeight="700"
               fontSize={30}
@@ -97,9 +104,18 @@ const AuthorPage = () => {
                 __html: data && data.author.description.html,
               }}></Typography>
           </Grid>
-          <Grid item>
-
+          <Grid item xs={12}>
+            <Divider textAlign="center" sx={{color: "#000", my: 8}} data-aos="fade-down">
+              <Chip
+                sx={{fontSize: "20px", fontWeight: 800, padding: "22px"}}
+                size="medium"
+                color="primary"
+                label={` مقالات ${data && data.author.name} `}
+                variant="outlined"
+              />
+            </Divider>
           </Grid>
+          
         </Grid>
       </Container>
     </>
