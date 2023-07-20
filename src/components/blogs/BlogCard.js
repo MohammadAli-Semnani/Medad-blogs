@@ -5,10 +5,9 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import summarizeArticle from "../../helpers/summery";
 import {Link} from "react-router-dom";
 
-export default function BlogCard({content, coverPhoto, author, title,slug}) {
+function BlogCard({content, coverPhoto, author, title, slug}) {
   return (
     <Card
       sx={{
@@ -46,16 +45,20 @@ export default function BlogCard({content, coverPhoto, author, title,slug}) {
               fontSize: "12px",
               lineHeight: "15px",
               fontWeight: 600,
-              maxHeight: "45px",
+              maxHeight: "55px",
               mt: 1,
             }}
+            component="div"
+            dangerouslySetInnerHTML={{ __html: content && content.html }}
             variant="body2"
             color="text.secondary">
-            {(content && content.text)}
+            
           </Typography>
         </CardContent>
       </Link>
-      <CardHeader
+      {
+        author &&
+        <CardHeader
         sx={{padding: "0", mb: "13px"}}
         avatar={
           <Avatar
@@ -71,13 +74,16 @@ export default function BlogCard({content, coverPhoto, author, title,slug}) {
         }
         title={
           <Typography
-            component="p"
-            variant="p"
-            sx={{fontSize: 13, fontWeight: 600}}>
+          component="p"
+          variant="p"
+          sx={{fontSize: 13, fontWeight: 600}}>
             {author.name}
           </Typography>
         }
-      />
+        />
+      }
     </Card>
   );
 }
+
+export default BlogCard;

@@ -16,7 +16,7 @@ const GET_BLOG_INFO = gql`
         url
       }
       content {
-        text
+        html
       }
     }
   }

@@ -11,7 +11,7 @@ const Blogs = () => {
     Aos.init({duration: 2000});
   }, []);
   const {data, loading, error} = useQuery(GET_BLOG_INFO);
-  data && console.log("post", data);
+  console.log(data);
   return (
     <>
       <Grid container>

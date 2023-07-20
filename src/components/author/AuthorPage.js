@@ -16,13 +16,13 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import BlogCard from "../blogs/BlogCard";
 
 const AuthorPage = () => {
   useEffect(() => {
     Aos.init({duration: 2000});
   }, []);
   const {slug} = useParams();
-  console.log(slug);
 
   const {data, loading, errors} = useQuery(GET_AUTHOR_INFO, {
     variables: {slug},
@@ -36,13 +36,11 @@ const AuthorPage = () => {
     textAlign: "center",
   };
 
+  console.log(data);
   return (
     <>
       <Container maxWidth="lg">
-        <Grid
-          container
-          // xs={12}
-        >
+        <Grid container>
           <Grid
             item
             xs={12}
@@ -105,7 +103,10 @@ const AuthorPage = () => {
               }}></Typography>
           </Grid>
           <Grid item xs={12}>
-            <Divider textAlign="center" sx={{color: "#000", my: 8}} data-aos="fade-down">
+            <Divider
+              textAlign="center"
+              sx={{color: "#000", my: 8}}
+              data-aos="fade-down">
               <Chip
                 sx={{fontSize: "20px", fontWeight: 800, padding: "22px"}}
                 size="medium"
@@ -115,7 +116,20 @@ const AuthorPage = () => {
               />
             </Divider>
           </Grid>
-          
+        </Grid>
+        <Grid container spacing={2}>
+          {data &&
+            data.author.posts.map((post) => {
+              <Grid item xs={12} sm={6} md={4} key={post.id}>
+                <BlogCard
+                  slug={post.slug}
+                  title={post.title}
+                  coverPhoto={post.coverPhoto}
+                  content={post.content}
+                  author={data && data.author}
+                  />
+              </Grid>;
+            })}
         </Grid>
       </Container>
     </>
