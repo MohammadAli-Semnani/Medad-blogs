@@ -34,6 +34,7 @@ const HomePage = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            minHeight:"90vh"
           }}>
           <img style={{margin: "0 auto"}} src={spinner} />
         </div>

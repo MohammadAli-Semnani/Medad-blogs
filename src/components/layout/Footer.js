@@ -6,7 +6,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 const Footer = () => {
   return (
-    <Container disableGutters maxWidth="xl">
+    <Container disableGutters  maxWidth="xl">
       <Grid
         maxWidth="100%"
         container
