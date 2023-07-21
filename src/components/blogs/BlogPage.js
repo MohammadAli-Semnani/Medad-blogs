@@ -1,7 +1,8 @@
 import {useQuery} from "@apollo/client";
 import React from "react";
 import {GET_BLOG_INFO} from "../graphql/queries";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import {
   Avatar,
   CardHeader,
@@ -53,8 +54,25 @@ const BlogPage = () => {
             />
           </Container>
         </Grid>
-        <Grid item sm={12}>
-          title
+        <Grid
+          item
+          sm={12}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}>
+          <Typography color="primary" fontSize={28} fontWeight={600}>
+            {data && data.post.title}
+          </Typography>
+          <Link to={`/`}>
+            <ArrowBackIosIcon
+              align="left"
+              color="primary"
+              fontSize="large"
+              sx={{mr: 1}}
+            />
+          </Link>
         </Grid>
         <Grid item sm={12}>
           cover
