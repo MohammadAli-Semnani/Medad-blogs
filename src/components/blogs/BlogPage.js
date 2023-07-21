@@ -2,7 +2,14 @@ import {useQuery} from "@apollo/client";
 import React from "react";
 import {GET_BLOG_INFO} from "../graphql/queries";
 import {useParams} from "react-router-dom";
-import {Container, Grid} from "@mui/material";
+import {
+  Avatar,
+  CardHeader,
+  Chip,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
 
 const BlogPage = () => {
   const {slug} = useParams();
@@ -10,16 +17,41 @@ const BlogPage = () => {
     variables: {slug},
   });
 
-    console.log(data);
+  console.log(data);
 
   return (
     <Container maxWidth="lg">
       <Grid container>
-        <Grid item sm={12}>
-          {data && data.post.author.name}
-        </Grid>
-        <Grid item sm={12}>
-          tags
+        <Grid item sm={12} sx={{display: "flex", alignItems: "center"}}>
+          <CardHeader
+            avatar={
+              <Avatar
+                sx={{
+                  width: 110,
+                  height: 110,
+                  mt: 3,
+                }}>
+                <img
+                  src={data && data.post.author.avatar.url}
+                  style={{width: 140, minHeight: "115px"}}
+                />{" "}
+              </Avatar>
+            }
+          />
+          <Container sx={{mr: "-16px"}}>
+            <Typography component="h2" fontSize={28} fontWeight={700}>
+              {" "}
+              {data && data.post.author.name}{" "}
+            </Typography>
+            <Chip
+              component="symbol"
+              sx={{fontSize: "16px", fontWeight: 600}}
+              variant="outlined"
+              color="info"
+              size="medium"
+              label={data && data.post.author.field}
+            />
+          </Container>
         </Grid>
         <Grid item sm={12}>
           title
