@@ -19,7 +19,7 @@ const Header = () => {
               align="right"
               variant="h4"
               component="h1">
-              مداد
+              وبلاگ مداد
             </Typography>
             <IconButton
               align="left"

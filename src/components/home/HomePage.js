@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Blogs from "../blogs/Blogs";
 import Authors from "../author/Authors";
 import {Chip, Container, Divider, Grid, Typography} from "@mui/material";
-import {GET_BLOG_INFO} from "../graphql/queries";
+import {GET_BLOGS_INFO} from "../graphql/queries";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import {useQuery} from "@apollo/client";
@@ -14,7 +14,7 @@ const HomePage = () => {
     Aos.init({duration: 1500});
   }, []);
 
-  const {loading} = useQuery(GET_BLOG_INFO);
+  const {loading} = useQuery(GET_BLOGS_INFO);
 
   const textStyle = {
     color: "#222",

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useQuery} from "@apollo/client";
-import {GET_BLOG_INFO} from "../graphql/queries";
+import {GET_BLOGS_INFO} from "../graphql/queries";
 import BlogCard from "./BlogCard";
 import {Grid} from "@mui/material";
 import Aos from "aos";
@@ -11,7 +11,7 @@ const Blogs = () => {
     Aos.init({duration: 2000});
   }, []);
 
-  const {data, loading, error} = useQuery(GET_BLOG_INFO);
+  const {data, loading, error} = useQuery(GET_BLOGS_INFO);
 
 
   return (
@@ -19,7 +19,13 @@ const Blogs = () => {
       <Grid container>
         {data &&
           data.posts.map((blog) => (
-            <Grid component="div" xs={12} md={4} sm={6} data-aos="zoom-in">
+            <Grid
+              key={blog.id}
+              component="div"
+              xs={12}
+              md={4}
+              sm={6}
+              data-aos="zoom-in">
               <BlogCard {...blog} />
             </Grid>
           ))}
