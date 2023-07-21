@@ -1,7 +1,7 @@
 import {useQuery} from "@apollo/client";
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
-import { GET_AUTHOR_INFO } from "../graphql/queries";
+import {GET_AUTHOR_INFO} from "../graphql/queries";
 import sanitizeHtml from "sanitize-html";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -55,7 +55,6 @@ const AuthorPage = () => {
                 <Avatar
                   sx={{
                     width: 200,
-
                     height: 200,
                   }}>
                   <img
@@ -105,7 +104,7 @@ const AuthorPage = () => {
           <Grid item xs={12}>
             <Divider
               textAlign="center"
-              sx={{color: "#000", my: 8}}
+              sx={{color: "#000", my: 5}}
               data-aos="fade-down">
               <Chip
                 sx={{fontSize: "20px", fontWeight: 800, padding: "22px"}}
@@ -119,8 +118,15 @@ const AuthorPage = () => {
         </Grid>
         <Grid container spacing={2}>
           {data &&
-            data.author.posts.map((post) => {
-              <Grid item xs={12} sm={6} md={4} key={post.id}>
+            data.author.posts.map((post) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                // data-aos="fade-up"
+                // data-aos-anchor-placement="bottom-center"
+                key={post.id}>
                 <BlogCard
                   slug={post.slug}
                   title={post.title}
@@ -128,8 +134,8 @@ const AuthorPage = () => {
                   content={post.content}
                   author={data && data.author}
                 />
-              </Grid>;
-            })}
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </>
