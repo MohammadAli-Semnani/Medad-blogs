@@ -106,13 +106,15 @@ const AuthorPage = () => {
               textAlign="center"
               sx={{color: "#000", my: 5}}
               data-aos="fade-down">
-              <Chip
-                sx={{fontSize: "20px", fontWeight: 800, padding: "22px"}}
-                size="medium"
-                color="primary"
-                label={` مقالات ${data && data.author.name} `}
-                variant="outlined"
-              />
+              {data && (
+                <Chip
+                  sx={{fontSize: "20px", fontWeight: 800, padding: "22px"}}
+                  size="medium"
+                  color="primary"
+                  label={` مقالات ${data && data.author.name} `}
+                  variant="outlined"
+                />
+              )}
             </Divider>
           </Grid>
         </Grid>
@@ -124,15 +126,14 @@ const AuthorPage = () => {
                 xs={12}
                 sm={6}
                 md={4}
-                // data-aos="fade-up"
-                // data-aos-anchor-placement="bottom-center"
+                data-aos="zoom-in-up"
                 key={post.id}>
                 <BlogCard
                   slug={post.slug}
                   title={post.title}
                   coverPhoto={post.coverPhoto}
                   content={post.content}
-                  author={data && data.author}
+                  // author={data && data.author}
                 />
               </Grid>
             ))}

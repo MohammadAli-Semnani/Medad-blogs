@@ -10,8 +10,10 @@ const Blogs = () => {
   useEffect(() => {
     Aos.init({duration: 2000});
   }, []);
+
   const {data, loading, error} = useQuery(GET_BLOG_INFO);
-  console.log(data);
+
+
   return (
     <>
       <Grid container>

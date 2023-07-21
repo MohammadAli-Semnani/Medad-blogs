@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import {Link} from "react-router-dom";
+import {Divider} from "@mui/material";
 
 function BlogCard({content, coverPhoto, author, title, slug}) {
   return (
@@ -49,39 +50,43 @@ function BlogCard({content, coverPhoto, author, title, slug}) {
               mt: 1,
             }}
             component="div"
-            dangerouslySetInnerHTML={{ __html: content && content.html }}
+            dangerouslySetInnerHTML={{__html: content && content.html}}
             variant="body2"
-            color="text.secondary">
-            
-          </Typography>
+            color="text.secondary"></Typography>
         </CardContent>
       </Link>
-      {
-        author &&
-        <CardHeader
-        sx={{padding: "0", mb: "13px"}}
-        avatar={
-          <Avatar
-            sx={{
-              marginLeft: "8px",
-              bgcolor: "gray",
-              width: "33px",
-              height: "33px",
-            }}
-            aria-label="recipe">
-            <img width="40px" src={author && author.avatar.url} />
-          </Avatar>
-        }
-        title={
-          <Typography
-          component="p"
-          variant="p"
-          sx={{fontSize: 13, fontWeight: 600}}>
-            {author.name}
-          </Typography>
-        }
-        />
-      }
+      {author && (
+        <>
+          <Divider style={{margin: "3px 5px 10px"}} />
+          <Link
+            style={{textDecoration: "none", color: "#363636"}}
+            to={`/authors/${author.slug}`}>
+            <CardHeader
+              sx={{padding: "0", mb: "13px"}}
+              avatar={
+                <Avatar
+                  sx={{
+                    marginLeft: "8px",
+                    bgcolor: "gray",
+                    width: "33px",
+                    height: "33px",
+                  }}
+                  aria-label="recipe">
+                  <img width="40px" src={author && author.avatar.url} />
+                </Avatar>
+              }
+              title={
+                <Typography
+                  component="p"
+                  variant="p"
+                  sx={{fontSize: 13, fontWeight: 600}}>
+                  {author.name}
+                </Typography>
+              }
+            />
+          </Link>
+        </>
+      )}
     </Card>
   );
 }
