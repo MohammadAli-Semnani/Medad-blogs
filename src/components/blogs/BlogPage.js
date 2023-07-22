@@ -6,6 +6,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import {
   Avatar,
   CardHeader,
+  CardMedia,
   Chip,
   Container,
   Grid,
@@ -23,33 +24,33 @@ const BlogPage = () => {
   return (
     <Container maxWidth="lg">
       <Grid container>
-        <Grid item sm={12} sx={{display: "flex", alignItems: "center"}}>
+        <Grid item sm={12} sx={{display: "flex", alignItems: "center",mt:4}}>
           <CardHeader
             avatar={
               <Avatar
                 sx={{
-                  width: 110,
-                  height: 110,
-                  mt: 3,
+                  width: 50,
+                  height: 50,
+                  mr:-4
                 }}>
                 <img
                   src={data && data.post.author.avatar.url}
-                  style={{width: 140, minHeight: "115px"}}
+                  style={{width: 70, minHeight: 70}}
                 />{" "}
               </Avatar>
             }
           />
-          <Container sx={{mr: "-16px"}}>
-            <Typography component="h2" fontSize={28} fontWeight={700}>
+          <Container sx={{display:"flex", flexDirection:"column", alignItems:"flex-start", justifyContent:"space-between",mr: "-16px"}}>
+            <Typography component="h2" fontSize={16} fontWeight={700}>
               {" "}
               {data && data.post.author.name}{" "}
             </Typography>
             <Chip
               component="symbol"
-              sx={{fontSize: "16px", fontWeight: 600}}
+              sx={{width:100,fontSize: 14, fontWeight: 600,mr:-1}}
               variant="outlined"
               color="info"
-              size="medium"
+              size="small"
               label={data && data.post.author.field}
             />
           </Container>
@@ -61,6 +62,7 @@ const BlogPage = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            mt:4
           }}>
           <Typography color="primary" fontSize={28} fontWeight={600}>
             {data && data.post.title}
@@ -75,7 +77,12 @@ const BlogPage = () => {
           </Link>
         </Grid>
         <Grid item sm={12}>
-          cover
+          <CardMedia
+            component="img"
+            image={data && data.post.coverPhoto.url}
+            sx={{borderRadius:4, mt: 3 }}
+            
+          />
         </Grid>
         <Grid item sm={12}>
           content
