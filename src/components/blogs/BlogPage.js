@@ -3,6 +3,8 @@ import React from "react";
 import {GET_BLOG_INFO} from "../graphql/queries";
 import {Link, useParams} from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import sanitizeHtml from "sanitize-html";
+
 import {
   Avatar,
   CardHeader,
@@ -24,14 +26,14 @@ const BlogPage = () => {
   return (
     <Container maxWidth="lg">
       <Grid container>
-        <Grid item sm={12} sx={{display: "flex", alignItems: "center",mt:4}}>
+        <Grid item sm={12} sx={{display: "flex", alignItems: "center", mt: 4}}>
           <CardHeader
             avatar={
               <Avatar
                 sx={{
                   width: 50,
                   height: 50,
-                  mr:-4
+                  mr: -4,
                 }}>
                 <img
                   src={data && data.post.author.avatar.url}
@@ -40,14 +42,21 @@ const BlogPage = () => {
               </Avatar>
             }
           />
-          <Container sx={{display:"flex", flexDirection:"column", alignItems:"flex-start", justifyContent:"space-between",mr: "-16px"}}>
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+              mr: "-16px",
+            }}>
             <Typography component="h2" fontSize={16} fontWeight={700}>
               {" "}
               {data && data.post.author.name}{" "}
             </Typography>
             <Chip
               component="symbol"
-              sx={{width:100,fontSize: 14, fontWeight: 600,mr:-1}}
+              sx={{width: 100, fontSize: 14, fontWeight: 600, mr: -1}}
               variant="outlined"
               color="info"
               size="small"
@@ -62,7 +71,7 @@ const BlogPage = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mt:4
+            mt: 4,
           }}>
           <Typography color="primary" fontSize={28} fontWeight={600}>
             {data && data.post.title}
@@ -72,7 +81,8 @@ const BlogPage = () => {
               align="left"
               color="primary"
               fontSize="large"
-              sx={{mr: 1}}
+              sx={{ mr: 1 }}
+              
             />
           </Link>
         </Grid>
@@ -80,12 +90,16 @@ const BlogPage = () => {
           <CardMedia
             component="img"
             image={data && data.post.coverPhoto.url}
-            sx={{borderRadius:4, mt: 3 }}
-            
+            sx={{borderRadius: 4, mt: 3}}
           />
         </Grid>
         <Grid item sm={12}>
-          content
+          <Typography
+            sx={{mt:6}}
+            component="p"
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHtml(data && data.post.content.html),
+            }}></Typography>
         </Grid>
       </Grid>
     </Container>
