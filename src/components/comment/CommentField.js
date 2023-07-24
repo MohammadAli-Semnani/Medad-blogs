@@ -1,16 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import TextField from "@mui/material/TextField";
 import {Container, FormControl, Stack, Switch, Typography} from "@mui/material";
 import {LoadingButton} from "@mui/lab";
-import SaveIcon from "@mui/icons-material/Save";
-import SendIcon from "@mui/icons-material/Send";
+import {useMutation} from "@apollo/client";
+import {CREATE_COMMENT} from "../graphql/mutation";
 
-const CommentField = () => {
-  const [loading, setLoading] = React.useState(false);
+const CommentField = ({slug}) => {
+  const [datas, setDatas] = useState({
+    name: "",
+    email: "",
+    text: "",
+  });
 
-  function handleClick() {
-    setLoading(true);
-  }
+  const [sendComment, {data, loading, error}] = useMutation(CREATE_COMMENT, {
+    variables: {
+      name: datas.name,
+      email: datas.email,
+      text: datas.text,
+      slug: slug,
+    },
+  });
+    
+    const changeHandler = (event) => {
+        const { value, name } = event.target
+    setDatas((prevState) => ({...prevState, [name]: value}));
+    }
+
   return (
     <Container
       component="div"
@@ -26,6 +41,9 @@ const CommentField = () => {
           نظر خود را درباره این پست بنویسید
         </Typography>
         <TextField
+          value={datas.name}
+          name="name"
+          onChange={changeHandler}
           sx={{
             maxHeight: "fit-content",
             width: "100%",
@@ -47,6 +65,9 @@ const CommentField = () => {
           id="fullWidth"
         />
         <TextField
+          value={datas.email}
+          onChange={changeHandler}
+          name="email"
           sx={{
             maxHeight: "fit-content",
             width: "100%",
@@ -68,6 +89,9 @@ const CommentField = () => {
           id="fullWidth"
         />
         <TextField
+          value={datas.text}
+          onChange={changeHandler}
+          name="text"
           sx={{
             maxHeight: "fit-content",
             width: "100%",
@@ -95,23 +119,11 @@ const CommentField = () => {
           sx={{
             display: "block",
           }}
-          control={
-            <Switch
-              checked={loading}
-              onChange={() => setLoading(!loading)}
-              name="loading"
-              color="primary"
-            />
-          }
+          control={<Switch name="loading" color="primary" />}
           label="Loading"
         />
 
-        <LoadingButton
-          sx={{mb: 4}}
-          onClick={handleClick}
-          loading={loading}
-          loadingPosition="start"
-          variant="contained">
+        <LoadingButton sx={{mb: 4}} loadingPosition="start" variant="contained">
           <Typography fontWeight={600} fontSize={16} component="span">
             ارسال نظر
           </Typography>
