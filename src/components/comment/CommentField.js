@@ -1,9 +1,18 @@
 import React, {useState} from "react";
 import TextField from "@mui/material/TextField";
-import {Container, FormControl, Stack, Switch, Typography} from "@mui/material";
+import {
+  Container,
+  FormControl,
+  Stack,
+  Switch,
+  Typography,
+} from "@mui/material";
 import {LoadingButton} from "@mui/lab";
 import {useMutation} from "@apollo/client";
-import {CREATE_COMMENT} from "../graphql/mutation";
+import { CREATE_COMMENT } from "../graphql/mutation";
+import {ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const CommentField = ({slug}) => {
   const [datas, setDatas] = useState({
@@ -20,11 +29,39 @@ const CommentField = ({slug}) => {
       slug: slug,
     },
   });
-    
-    const changeHandler = (event) => {
-        const { value, name } = event.target
+
+  const changeHandler = (event) => {
+    const {value, name} = event.target;
     setDatas((prevState) => ({...prevState, [name]: value}));
+  };
+  const sendHandler = () => {
+    if (datas.name.trim() && datas.email.trim() && datas.text.trim()) {
+        sendComment();
+        toast.success("نظر شما با موفقیت ثبت شد", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setDatas({name: "",email: "",text: ""})
+    
+    } else {
+        toast.warning("لطفا تمام ورودی ها را پر کنید", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
     }
+  };
 
   return (
     <Container
@@ -123,12 +160,18 @@ const CommentField = ({slug}) => {
           label="Loading"
         />
 
-        <LoadingButton sx={{mb: 4}} loadingPosition="start" variant="contained">
+        <LoadingButton
+          loading={loading}
+          onClick={sendHandler}
+          sx={{mb: 4}}
+          loadingPosition="start"
+          variant="contained">
           <Typography fontWeight={600} fontSize={16} component="span">
             ارسال نظر
           </Typography>
         </LoadingButton>
       </Stack>
+      <ToastContainer />
     </Container>
   );
 };
