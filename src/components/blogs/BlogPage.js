@@ -14,6 +14,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import CommentField from "../comment/CommentField";
 
 const BlogPage = () => {
   const {slug} = useParams();
@@ -81,8 +82,7 @@ const BlogPage = () => {
               align="left"
               color="primary"
               fontSize="large"
-              sx={{ mr: 1 }}
-              
+              sx={{mr: 1}}
             />
           </Link>
         </Grid>
@@ -90,16 +90,19 @@ const BlogPage = () => {
           <CardMedia
             component="img"
             image={data && data.post.coverPhoto.url}
-            sx={{borderRadius: 4, mt: 3}}
+            sx={{borderRadius: 4, mt: 3, width: "93%", margin: "30px auto 0"}}
           />
         </Grid>
         <Grid item sm={12}>
           <Typography
-            sx={{mt:6}}
+            sx={{mt: 6, fontSize: 18, lineHeight: 2.3}}
             component="p"
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml(data && data.post.content.html),
             }}></Typography>
+        </Grid>
+        <Grid item sm={12}>
+          <CommentField slug={ slug} />
         </Grid>
       </Grid>
     </Container>

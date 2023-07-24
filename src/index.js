@@ -19,7 +19,7 @@ root.render(
   <ApolloProvider client={client}>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <App />
+        <App dir="rtl"/>
       </ThemeProvider>
     </BrowserRouter>
   </ApolloProvider>,
