@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import CommentField from "../comment/CommentField";
+import Comments from "../comment/Comments";
 
 const BlogPage = () => {
   const {slug} = useParams();
@@ -103,6 +104,9 @@ const BlogPage = () => {
         </Grid>
         <Grid item sm={12}>
           <CommentField slug={ slug} />
+        </Grid>
+        <Grid item sm={12}>
+          <Comments slug={ slug} />
         </Grid>
       </Grid>
     </Container>
