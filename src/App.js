@@ -5,7 +5,8 @@ import HomePage from "./components/home/HomePage";
 import Layout from "./components/layout/Layout";
 import AuthorPage from "./components/author/AuthorPage";
 import BlogPage from "./components/blogs/BlogPage";
-import ScrollToTop from "./helpers/scrollToTop";
+import ScrollToTop from "./helpers/ScrollToTop";
+
 
 function App() {
   return (

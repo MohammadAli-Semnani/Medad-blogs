@@ -7,20 +7,27 @@ import {
   Typography,
 } from "@mui/material";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
       <AppBar position="sticky">
         <Container maxWidth="lg">
-          <Toolbar>
-            <Typography
-              fontWeight="700"
-              flex={1}
-              align="right"
-              variant="h4"
-              component="h1">
-              وبلاگ مداد
-            </Typography>
+          <Toolbar
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}>
+            <Link style={{color: "#fff", textDecoration: "none"}} to="/">
+              <Typography
+                fontWeight="700"
+                align="right"
+                variant="h4"
+                component="h1">
+                وبلاگ مداد
+              </Typography>
+            </Link>
             <IconButton
               align="left"
               size="large"
