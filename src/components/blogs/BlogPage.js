@@ -103,10 +103,10 @@ const BlogPage = () => {
             }}></Typography>
         </Grid>
         <Grid item sm={12}>
-          <CommentField slug={ slug} />
+          <CommentField slug={slug} />
         </Grid>
         <Grid item sm={12}>
-          <Comments slug={ slug} />
+          <Comments slug={slug} />
         </Grid>
       </Grid>
     </Container>

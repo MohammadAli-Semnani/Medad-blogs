@@ -88,6 +88,7 @@ const GET_POST_COMMENT = gql`
       id
       name
       text
+      updatedAt
     }
   }
 `;
