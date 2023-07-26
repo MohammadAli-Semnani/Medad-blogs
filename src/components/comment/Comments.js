@@ -1,23 +1,15 @@
 import React from "react";
 import {useQuery} from "@apollo/client";
 import {GET_POST_COMMENT} from "../graphql/queries";
-import {
-  Avatar,
-  Divider,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import {Avatar, Divider, Grid, Stack, Typography} from "@mui/material";
 
 const Comments = ({slug}) => {
-  const { loading, error, data} = useQuery(GET_POST_COMMENT, {
+  const {loading, error, data} = useQuery(GET_POST_COMMENT, {
     variables: {slug},
   });
-  if (loading) return ;
-  if (error) return ;
-    const {
-      comments,
-  } = data;
+  if (loading) return;
+  if (error) return;
+  const {comments} = data;
   console.log(comments);
   return (
     <>
@@ -64,7 +56,13 @@ const Comments = ({slug}) => {
           </>
         ))}
         {comments.length === 0 && (
-          <Typography>در حال حاضر هیچ نظری وجود ندارد</Typography>
+          <Typography
+            fontSize={20}
+            component="span"
+            fontWeight={600}
+            sx={{margin:"30px auto 0 ", color:"gray"}}>
+            * در حال حاضر هیچ نظری وجود ندارد *  
+          </Typography>
         )}
       </Grid>
     </>
