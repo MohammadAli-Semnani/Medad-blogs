@@ -70,7 +70,7 @@ const CommentField = ({slug}) => {
       sx={{
         mt: 5,
         borderRadius: 4,
-        boxShadow: "0px 0px 25px -2px rgba(88, 88, 88, 0.65)",
+        boxShadow: "0px 0px 20px -1px rgba(88, 88, 88, 0.20)",
         width: "100%",
       }}>
       <Stack spacing={3} sx={{padding: "30px 40px 35px"}}>
